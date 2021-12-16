@@ -1,11 +1,33 @@
 <template>
   <view class="content">
-    <button @click="handleClick">授权</button>
+    <MxTitle title="暖蜂驿站" :bg="false"></MxTitle>
+    <view toCenter column bg="#F8B500" h="852" class="top">
+      <image w="388" h="388" mt="165" src="/static/lock.png"/>
+      <button w="454" my="105" class="main-btn" @click="handleClick">门禁申请</button>
+    </view>
+    <view toAround mt="72">
+      <view>
+        <image w="144" h="144" src="/static/me.png"/>
+        <view color="#999999">职工服务</view>
+      </view>
+      <view>
+        <image w="144" h="144" src="/static/service.png"/>
+        <view color="#999999">个人中心</view>
+      </view>
+    </view>
+    <view my="100" toCenter>
+      <image w="360" src="/static/logo.png" mode="widthFix"/>
+    </view>
   </view>
 </template>
 
 <script>
+import MxTitle from '@/components/mx-title';
+
 export default {
+  components: {
+    MxTitle
+  },
   data() {
     return {};
   },
@@ -46,10 +68,22 @@ export default {
 };
 </script>
 
-<style>
-page {
-  width: 100%;
-  height: 100%;
-  background: #f0f3f9;
+<style lang="scss">
+.top {
+  background: url('http://dev.miaoxz.com/bg.png');
+  background-size: cover;
+}
+.main-btn {
+  background: #FFFFFF;
+  box-shadow: 4rpx 5rpx 10px 0 #E0A403;
+  border-radius: 55rpx;
+  font-size: 36rpx;
+  color: #F8B500;
+  letter-spacing: 0;
+  text-align: center;
+  
+  &::after {
+    border: 0;
+  }
 }
 </style>
