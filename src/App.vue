@@ -1,6 +1,10 @@
 <script>
 export default {
   onLaunch: function () {
+    // #ifndef APP-NVUE
+    uni.requireNativePlugin = () => {};
+    // #endif
+    
     console.log("App Launch");
     const envVersion = __wxConfig.envVersion;
     let addr;

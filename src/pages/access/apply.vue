@@ -42,19 +42,17 @@
 </template>
 
 <script>
-export default {
-  
-};
+export default {};
 </script>
 
 <style lang="scss">
 .btn {
-  background: #F8B500;
+  background: #f8b500;
   border-radius: 50rpx;
   font-size: 36rpx;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
-  
+
   &::after {
     border: 0;
   }
