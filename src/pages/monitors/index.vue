@@ -32,19 +32,4 @@ export default {
   background: url("http://dev.miaoxz.com/monitor-preiview.png");
   background-size: cover;
 }
-
-.btn-sm {
-  background: #F8B500;
-  border-radius: 22rpx;
-  font-size: 24rpx;
-  color: #FFFFFF;
-  padding: 5rpx 18rpx;
-  line-height: normal;
-  margin: 0;
-
-  
-  &::after {
-    border: 0;
-  }
-}
 </style>
