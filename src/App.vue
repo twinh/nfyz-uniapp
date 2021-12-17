@@ -43,4 +43,16 @@ export default {
     height: 100%;
     background: #F5F5F5;
   }
+
+  .btn {
+    background: #f8b500;
+    border-radius: 50rpx;
+    font-size: 36rpx;
+    color: #ffffff;
+    text-align: center;
+
+    &::after {
+      border: 0;
+    }
+  }
 </style>

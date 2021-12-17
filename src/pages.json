@@ -4,6 +4,30 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/user-services/new",
+			"style": {
+				"navigationBarTitleText": "活动报名"
+			}
+		},
+		{
+			"path": "pages/services/detail",
+			"style": {
+				"navigationBarTitleText": "职工服务"
+			}
+		},
+		{
+			"path": "pages/monitors/detail",
+			"style": {
+				"navigationBarTitleText": "查看监控"
+			}
+		},
+		{
+			"path": "pages/monitors/index",
+			"style": {
+				"navigationBarTitleText": "实时监控"
+			}
+		},
+		{
 			"path": "pages/user/index",
 			"style": {
 				"navigationBarTitleText": "个人中心"

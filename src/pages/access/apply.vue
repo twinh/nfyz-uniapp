@@ -46,15 +46,5 @@ export default {};
 </script>
 
 <style lang="scss">
-.btn {
-  background: #f8b500;
-  border-radius: 50rpx;
-  font-size: 36rpx;
-  color: #ffffff;
-  text-align: center;
 
-  &::after {
-    border: 0;
-  }
-}
 </style>
