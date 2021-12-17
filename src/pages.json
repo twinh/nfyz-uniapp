@@ -1,10 +1,19 @@
 {
+	"easycom": {
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/access/apply",
+			"style": {
+				"navigationBarTitleText": "门禁申请"
+			}
+		},
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationStyle": "custom",
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTextStyle": "white",
+				"navigationStyle": "custom"
 			}
 		}
 	],

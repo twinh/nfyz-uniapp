@@ -1,18 +1,22 @@
 <template>
-  <view class="content">
+  <view>
     <MxTitle title="暖蜂驿站" :bg="false"></MxTitle>
     <view toCenter column bg="#F8B500" h="852" class="top">
       <image w="388" h="388" mt="165" src="/static/lock.png"/>
       <button w="454" my="105" class="main-btn" @click="handleClick">门禁申请</button>
     </view>
     <view toAround mt="72">
-      <view>
-        <image w="144" h="144" src="/static/me.png"/>
-        <view color="#999999">职工服务</view>
+      <view toCenter column>
+        <image w="144" h="144" mb2 src="/static/service.png"/>
+        <view color="#999999" textCenter text="30">职工服务</view>
       </view>
-      <view>
-        <image w="144" h="144" src="/static/service.png"/>
-        <view color="#999999">个人中心</view>
+      <view toCenter column>
+        <image w="144" h="144" mb2 src="/static/service-manage.png"/>
+        <view color="#999999" textCenter text="30">职工服务管理</view>
+      </view>
+      <view toCenter column>
+        <image w="144" h="144" mb2 src="/static/me.png"/>
+        <view color="#999999" textCenter text="30">个人中心</view>
       </view>
     </view>
     <view my="100" toCenter>
@@ -53,6 +57,10 @@ export default {
   },
   methods: {
     handleClick() {
+      uni.navigateTo({
+        url: '/pages/access/apply',
+      });
+      return;
       uni.getUserProfile({
         desc: '用于完善会员资料',
         success: (res) => {
@@ -75,7 +83,7 @@ export default {
 }
 .main-btn {
   background: #FFFFFF;
-  box-shadow: 4rpx 5rpx 10px 0 #E0A403;
+  box-shadow: 4rpx 5rpx 10rpx 0 #E0A403;
   border-radius: 55rpx;
   font-size: 36rpx;
   color: #F8B500;

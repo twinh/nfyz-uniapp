@@ -26,8 +26,14 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+  @import "uview-ui/index.scss";
+
 	/*每个页面公共css */
+  view {
+    font-size: 30rpx;
+  }
+  
   page {
     width: 100%;
     height: 100%;
