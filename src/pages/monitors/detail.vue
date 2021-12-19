@@ -1,6 +1,6 @@
 <template>
   <view>
-    <image block w="700" mt="230" mx="auto" src="http://dev.miaoxz.com/video.png" mode="widthFix"/>
+    <image block w="700" mt="230" mx="auto" src="https://image-10001577.image.myqcloud.com/uploads/10/20211219/16399198233467.png" mode="widthFix"/>
     <view m="75">
       <button class="btn" @click="handleClick">返回</button>
     </view>

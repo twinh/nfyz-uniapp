@@ -100,7 +100,7 @@ export default {
 
 <style lang="scss">
 .top {
-  background: url('http://dev.miaoxz.com/bg.png');
+  background: url('https://image-10001577.image.myqcloud.com/uploads/10/20211219/16399197688524.png');
   background-size: cover;
 }
 .main-btn {

@@ -41,7 +41,7 @@ export default {
 
 <style lang="scss">
 .monitor-item {
-  background: url("http://dev.miaoxz.com/monitor-preiview.png");
+  background: url("https://image-10001577.image.myqcloud.com/uploads/10/20211219/16399198001857.png");
   background-size: cover;
 }
 </style>
