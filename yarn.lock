@@ -7589,6 +7589,11 @@ methods@^1.0.1, methods@~1.1.2:
   resolved "https://registry.nlark.com/methods/download/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
   integrity sha1-VSmk1nZUE07cxSZmVoNbD4Ua/O4=
 
+miaoxing@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.npmmirror.com/miaoxing/download/miaoxing-0.3.0.tgz#4f74d8aaf400c1fc580d4b64a5879b1cfc6209c1"
+  integrity sha1-T3TYqvQAwfxYDUtkpYebHPxiCcE=
+
 micromatch@^3.1.10, micromatch@^3.1.4:
   version "3.1.10"
   resolved "https://registry.nlark.com/micromatch/download/micromatch-3.1.10.tgz#70859bc95c9840952f359a068a3fc49f9ecfac23"
@@ -9591,7 +9596,7 @@ sane@^4.0.3:
     minimist "^1.1.1"
     walker "~1.0.5"
 
-sass-loader@7.3.1:
+sass-loader@^7.3.1:
   version "7.3.1"
   resolved "https://registry.npmmirror.com/sass-loader/download/sass-loader-7.3.1.tgz#a5bf68a04bcea1c13ff842d747150f7ab7d0d23f"
   integrity sha1-pb9ooEvOocE/+ELXRxUPerfQ0j8=

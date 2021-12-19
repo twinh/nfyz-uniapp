@@ -2,22 +2,24 @@
   <view>
     <MxTitle title="暖蜂驿站" :bg="false"></MxTitle>
     <view toCenter column bg="#F8B500" h="852" class="top">
-      <image w="388" h="388" mt="165" src="/static/lock.png"/>
-      <button w="454" my="105" class="main-btn" @click="handleClick">门禁申请</button>
+      <image w="388" h="388" mt="165" :src="isAdmin ? '/static/monitor.png' : '/static/lock.png'"/>
+      <button w="454" my="105" class="main-btn" @click="handleClick">
+        {{isAdmin ? '实时监控' : '门禁申请'}}
+      </button>
     </view>
     <view toAround mt="72">
-      <view toCenter column>
+      <navigator toCenter column url="/pages/services/index" hover-class="none">
         <image w="144" h="144" mb2 src="/static/service.png"/>
         <view color="#999999" textCenter text="30">职工服务</view>
-      </view>
-      <view toCenter column>
+      </navigator>
+      <navigator v-if="isAdmin" toCenter column url="/pages/admin-services/index">
         <image w="144" h="144" mb2 src="/static/service-manage.png"/>
         <view color="#999999" textCenter text="30">职工服务管理</view>
-      </view>
-      <view toCenter column>
+      </navigator>
+      <navigator toCenter column url="/pages/user/index" hover-class="none">
         <image w="144" h="144" mb2 src="/static/me.png"/>
         <view color="#999999" textCenter text="30">个人中心</view>
-      </view>
+      </navigator>
     </view>
     <view my="100" toCenter>
       <image w="360" src="/static/logo.png" mode="widthFix"/>
@@ -26,6 +28,7 @@
 </template>
 
 <script>
+import $ from 'miaoxing';
 import MxTitle from '@/components/mx-title';
 
 export default {
@@ -33,22 +36,25 @@ export default {
     MxTitle
   },
   data() {
-    return {};
+    return {
+      isAdmin: false,
+      isMember: false,
+    };
   },
   onLoad() {
     // 用户登陆
     uni.login({
       success: (res) => {
-        this.$api({
+        $.http({
           url: 'wechat-mp/login',
           method: 'POST',
           noToast: true,
           data: {
             code: res.code,
           },
-        }).then((ret) => {
-          console.log('ret', ret);
-          uni.setStorageSync('token', ret.token);
+        }).then((res) => {
+          uni.setStorageSync('token', res.data.token);
+          this.getData();
         }).catch((e) => {
           console.log('e', e);
         });
@@ -56,18 +62,38 @@ export default {
     });
   },
   methods: {
-    handleClick() {
-      uni.navigateTo({
-        url: '/pages/access/apply',
+    getData() {
+      $.http({
+        url: 'user',
+      }).then(({data}) => {
+        this.isAdmin = data.isAdmin;
+        this.isMember = data.isMember;
       });
-      return;
+    },
+    handleClick() {
+      if (this.isAdmin) {
+        uni.navigateTo({
+          url: '/pages/monitors/index'
+        });
+        return;
+      }
+      
       uni.getUserProfile({
         desc: '用于完善会员资料',
         success: (res) => {
-          this.$api({
+          $.http({
             url: 'wechat-mp/user',
             method: 'PATCH',
             data: res.userInfo,
+          }).then(({ret}) => {
+            if (ret.isErr()) {
+              $.ret(ret);
+              return;
+            }
+
+            uni.navigateTo({
+              url: '/pages/access-members/apply',
+            });
           });
         },
       });
