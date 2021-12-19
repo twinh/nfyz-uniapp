@@ -5,7 +5,6 @@ export default {
     uni.requireNativePlugin = () => {};
     // #endif
     
-    console.log("App Launch");
     const envVersion = __wxConfig.envVersion;
     let addr;
     if (envVersion === "release") {
@@ -17,10 +16,8 @@ export default {
     this.globalData.addr = addr;
   },
   onShow: function () {
-    console.log("App Show");
   },
   onHide: function () {
-    console.log("App Hide");
   },
   globalData: {
     envVersion: "",
@@ -42,6 +39,11 @@ export default {
     width: 100%;
     height: 100%;
     background: #F5F5F5;
+  }
+
+  /* 覆盖默认240px，避免拉伸后缩小 */
+  image[mode=widthFix] {
+    height: auto;
   }
 
   .btn {
