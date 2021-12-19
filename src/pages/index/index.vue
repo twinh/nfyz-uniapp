@@ -44,7 +44,7 @@ export default {
         $.http({
           url: 'wechat-mp/login',
           method: 'POST',
-          noToast: true,
+          loading: true,
           data: {
             code: res.code,
           },
@@ -81,6 +81,7 @@ export default {
             url: 'wechat-mp/user',
             method: 'PATCH',
             data: res.userInfo,
+            loading: true,
           }).then(({ret}) => {
             if (ret.isErr()) {
               $.ret(ret);
@@ -88,7 +89,7 @@ export default {
             }
 
             uni.navigateTo({
-              url: '/pages/access-members/apply',
+              url: '/pages/access-member/apply',
             });
           });
         },
