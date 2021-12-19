@@ -1,6 +1,5 @@
 <template>
   <view>
-    <MxTitle title="暖蜂驿站" :bg="false"></MxTitle>
     <view toCenter column bg="#F8B500" h="852" class="top">
       <image w="388" h="388" mt="165" :src="isAdmin ? '/static/monitor.png' : '/static/lock.png'"/>
       <button w="454" my="105" class="main-btn" @click="handleClick">
@@ -12,7 +11,7 @@
         <image w="144" h="144" mb2 src="/static/service.png"/>
         <view color="#999999" textCenter text="30">职工服务</view>
       </navigator>
-      <navigator v-if="isAdmin" toCenter column url="/pages/admin-services/index">
+      <navigator v-if="isAdmin" toCenter column url="/pages/admin/services/index" hover-class="none">
         <image w="144" h="144" mb2 src="/static/service-manage.png"/>
         <view color="#999999" textCenter text="30">职工服务管理</view>
       </navigator>
@@ -32,9 +31,6 @@ import $ from 'miaoxing';
 import MxTitle from '@/components/mx-title';
 
 export default {
-  components: {
-    MxTitle
-  },
   data() {
     return {
       isAdmin: false,

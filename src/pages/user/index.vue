@@ -26,7 +26,7 @@
       <view toCenter w="48">
         <image h="36" src="/static/service2.png" mode="heightFix"></image>
       </view>
-      <view ml="16">职工服务</view>
+      <view ml="16">我申请的职工服务</view>
     </navigator>
   </view>
 </template>

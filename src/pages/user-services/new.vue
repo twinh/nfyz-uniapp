@@ -21,11 +21,11 @@
 
       <view m="20" px="20" py="6" bgWhite rounded="16">
         <u-form-item
-            label="姓名"
+            label="申请理由"
             prop="name2"
             ref="item1"
         >
-          <u-textarea v-model="data.name2" placeholder="请输入内容" border="none" disableDefaultPadding></u-textarea>
+          <u-textarea v-model="data.name2" placeholder="请输入申请理由" border="none" disableDefaultPadding></u-textarea>
         </u-form-item>
       </view>
 
@@ -37,8 +37,8 @@
             ref="item1"
         >
           <view toRight>
-            <u-checkbox-group>
-              <u-checkbox>红色</u-checkbox>
+            <u-checkbox-group activeColor="black">
+              <u-checkbox>是</u-checkbox>
             </u-checkbox-group>
           </view>
         </u-form-item>
@@ -48,7 +48,7 @@
         <view mb="10">
           <u-form-item
               labelWidth="250"
-              label="是否携带家属"
+              label="请选择携带家属人数"
               prop="name2"
               ref="item1"
           ></u-form-item>
@@ -57,20 +57,24 @@
             v-model="value"
             placement="column"
             borderBottom
+            activeColor="black"
         >
           <view pb="20">
-            <u-radio label="思悠悠，恨悠悠，恨到归时方始休"></u-radio>
+            <u-radio label="1人"></u-radio>
           </view>
           <view pb="20">
-            <u-radio label="思悠悠，恨悠悠，恨到归时方始休"></u-radio>
+            <u-radio label="2人"></u-radio>
           </view>
           <view pb="20">
-            <u-radio label="思悠悠，恨悠悠，恨到归时方始休"></u-radio>
+            <u-radio label="3人"></u-radio>
+          </view>
+          <view pb="20">
+            <u-radio label="超过3人"></u-radio>
           </view>
         </u-radio-group>
       </view>
       <view m="75">
-        <button class="btn">提交</button>
+        <button class="btn" style="opacity: .3">开发中</button>
       </view>
     </u-form>
   </view>
