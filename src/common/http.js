@@ -52,10 +52,11 @@ $.http = async (urlOrConfig, config) => {
   uni.showNavigationBarLoading();
 
   return new Promise((resolve, reject) => {
-    return uni
+    uni
       .request({
         ...rest,
         header,
+        url: getApp().globalData.baseApiUrl + rest.url,
         success: res => {
           // 将 HTTP 状态错误转换为请求错误
           const isSuccess = res.statusCode >= 200 && res.statusCode < 300 || res.statusCode === 304;
@@ -85,6 +86,17 @@ $.http = async (urlOrConfig, config) => {
           uni.hideNavigationBarLoading();
           complete && complete();
         },
+        fail: (err) => {
+          // TODO
+          reject(err)
+          if (!options.noToast) {
+            uni.showToast({
+              icon: 'none',
+              title: '请求错误',
+              duration: 2000
+            });
+          }
+        }
       });
   });
 };

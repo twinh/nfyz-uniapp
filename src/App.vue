@@ -6,14 +6,14 @@ export default {
     // #endif
     
     const envVersion = __wxConfig.envVersion;
-    let addr;
+    let baseApiUrl;
     if (envVersion === "release") {
-      addr = "https://rabbit-seller-server.apkevery.com";
+      baseApiUrl = "https://nfyz.miaoxz.com/m-api/";
     } else {
-      addr = "http://dev.miaoxz.com/m-api/";
+      baseApiUrl = "http://dev.miaoxz.com/m-api/";
     }
     this.globalData.envVersion = envVersion;
-    this.globalData.addr = addr;
+    this.globalData.baseApiUrl = baseApiUrl;
   },
   onShow: function () {
   },
