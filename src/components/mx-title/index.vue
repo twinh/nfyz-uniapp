@@ -32,7 +32,7 @@ export default {
     titleConf() {
       const isBack = getCurrentPages().length > 1;
       return {
-        icon: isBack ? '/static/icon/back.png' : '/static/icon/home2.png',
+        //icon: isBack ? '/static/icon/back.png' : '/static/icon/home2.png',
         iconStyle: isBack ? {width: '14rpx', height: '25rpx', marginLeft: 0} : {marginLeft: 0},
         title: this.title || this.configTitle,
         place: true,

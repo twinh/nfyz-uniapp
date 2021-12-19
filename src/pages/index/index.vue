@@ -64,7 +64,7 @@ export default {
   methods: {
     getData() {
       $.http({
-        url: 'user',
+        url: 'index',
       }).then(({data}) => {
         this.isAdmin = data.isAdmin;
         this.isMember = data.isMember;
