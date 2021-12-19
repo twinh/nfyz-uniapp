@@ -1,18 +1,19 @@
 <template>
   <view>
-    <view>
-      1231
-    </view>
-
+    <image block w="700" mt="230" mx="auto" src="http://dev.miaoxz.com/video.png" mode="widthFix"/>
     <view m="75">
-      <button class="btn">返回</button>
+      <button class="btn" @click="handleClick">返回</button>
     </view>
   </view>
 </template>
 
 <script>
 export default {
-  name: "show.vue",
+  methods: {
+    handleClick() {
+      uni.navigateBack();
+    }
+  }
 };
 </script>
 
