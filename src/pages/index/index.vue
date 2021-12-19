@@ -1,9 +1,12 @@
 <template>
   <view>
-    <view toCenter column bg="#F8B500" h="852" class="top">
+    <view toCenterX column bg="#F8B500" h="852" class="top">
       <image w="388" h="388" mt="165" :src="isAdmin ? '/static/monitor.png' : '/static/lock.png'"/>
+      
       <button w="454" my="105" class="main-btn" @click="handleClick">
-        {{isAdmin ? '实时监控' : '门禁申请'}}
+        <template v-if="isAdmin">实时监控</template>
+        <template v-else-if="isMember">欢迎进入</template>
+        <template v-else>门禁申请</template>
       </button>
     </view>
     <view toAround mt="72">
@@ -73,6 +76,13 @@ export default {
         });
         return;
       }
+
+      if (this.isMember) {
+        uni.navigateTo({
+          url: '/pages/access-member/apply',
+        });
+        return;
+      } 
       
       uni.getUserProfile({
         desc: '用于完善会员资料',
@@ -110,7 +120,6 @@ export default {
   border-radius: 55rpx;
   font-size: 36rpx;
   color: #F8B500;
-  letter-spacing: 0;
   text-align: center;
   
   &::after {
