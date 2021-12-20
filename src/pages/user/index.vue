@@ -6,7 +6,7 @@
       </view>
       <view toAround column ml12>
         <view flex>
-          <oepn-data text="36" type="userNickName">用户昵称</oepn-data>
+          <open-data text="36" type="userNickName"></open-data>
           <view ml="16">
             <u-tag v-if="member.id" text="会员" type="warning" size="mini" shape="circle"></u-tag>
           </view>
