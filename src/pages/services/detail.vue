@@ -52,8 +52,10 @@ export default {
   },
   methods: {
     getData() {
+      const id = $.req('id') || '40936335342993093';
+      
       $.http({
-        url: 'services/' + ($.req('id') || '40758145248178372'),
+        url: 'services/' + id,
       }).then(({ret}) => {
         if (ret.isErr()) {
           $.ret(ret);
@@ -61,6 +63,10 @@ export default {
         }
 
         this.data = ret.data;
+      });
+      
+      $.post({
+        url: 'services/' + id + '/view'
       });
     },
     handleClick() {

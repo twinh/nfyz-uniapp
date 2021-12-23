@@ -27,7 +27,7 @@
           >
             <u-textarea
                 v-model="answers[question.id]"
-                border="none"U
+                border="none"
                 disableDefaultPadding
                 placeholder="请输入"
             ></u-textarea>
@@ -96,7 +96,7 @@ export default {
   methods: {
     getData() {
       $.http({
-        url: 'services/' + ($.req('id') || '40758145248178372'),
+        url: 'services/' + ($.req('serviceId') || '40758145248178372'),
       }).then(({ret}) => {
         if (ret.isErr()) {
           $.ret(ret);
