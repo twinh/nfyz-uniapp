@@ -53,7 +53,7 @@ export default {
   methods: {
     getData() {
       $.http({
-        url: 'services/' + ($.req('id') || '1'),
+        url: 'services/' + ($.req('id') || '40758145248178372'),
       }).then(({ret}) => {
         if (ret.isErr()) {
           $.ret(ret);

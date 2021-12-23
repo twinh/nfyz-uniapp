@@ -1,7 +1,7 @@
 <template>
   <view>
     <MxList
-        ref="mxList"
+        ref="list"
         url="services"
     >
       <template v-slot="{data}">
@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     getData() {
-      this.$refs.mxList.reload();
+      this.$refs.list.reload();
     },
   }
 };
