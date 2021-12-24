@@ -37,7 +37,7 @@
       </view>
     </view>
 
-    <view v-if="userService.id" m="20" bgWhite rounded="16" color="#999" p="40" pb0>
+    <view v-if="userService.answers && userService.answers.length" m="20" bgWhite rounded="16" color="#999" p="40" pb0>
       <view mb="40">申请内容</view>
       <view>
         <view 
@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     getData() {
-      const id = $.req('id') || '40758145248178372';
+      const id = $.req('id') || '39816724216620648';
       
       $.http({
         url: 'services/' + id,
@@ -106,7 +106,7 @@ export default {
       $.http({
         url: 'user-service?serviceId=' + id,
       }).then(({ret}) => {
-        this.userService = ret.data;
+        this.userService = ret.data || {};
       });
       
       $.post({
@@ -124,6 +124,16 @@ export default {
       uni.navigateToMiniProgram({
         appId: this.data.navigateAppId,
         path: this.data.navigatePath,
+        success: (result) => {
+          if (result.errMsg === 'navigateToMiniProgram:ok') {
+            $.post({
+              url: 'user-services',
+              data: {
+                serviceId: this.data.id,
+              }
+            });
+          }
+        }
       });
     },
   },

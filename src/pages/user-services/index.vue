@@ -1,6 +1,6 @@
 <template>
   <view>
-    <MxList
+    <mx-list
         ref="list"
         url="user-services"
     >
@@ -20,7 +20,7 @@
           </view>
         </navigator>
       </template>
-    </MxList>
+    </mx-list>
   </view>
 </template>
 
@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     getData() {
-      this.$refs.list.reload();
+      this.$refs.list && this.$refs.list.reload();
     },
   },
 };
