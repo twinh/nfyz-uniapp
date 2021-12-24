@@ -14,7 +14,15 @@
         <image w="36" src="/static/time.png" mode="widthFix"/>
         <view color="#999" ml="8">服务时间</view>
         <view ml="32">
-          {{ data.startDate }}至{{ data.endDate }}
+          <template v-if="data.startDate && data.endDate">
+            {{ data.startDate }}至{{ data.endDate }}
+          </template>
+          <template v-else-if="data.startDate">
+            {{ data.startDate }}开始
+          </template>
+          <template v-else>
+            {{ data.endDate }}结束
+          </template>
         </view>
       </view>
       <view v-if="data.address" flex py="25" toCenterY class="u-border-bottom">
@@ -28,12 +36,39 @@
         <view ml="32">{{ data.phone }}</view>
       </view>
     </view>
+
+    <view v-if="userService.id" m="20" bgWhite rounded="16" color="#999" p="40" pb0>
+      <view mb="40">申请内容</view>
+      <view>
+        <view 
+            v-for="(answer, index) in userService.answers" 
+            :key="answer.id"
+            pb="40"
+            flex
+            color="#666"
+        >
+          <view v-if="answer.question" w="45">
+            {{index + 1}}.
+          </view>
+          <view>
+            <view mb2>
+              {{answer.question.title}}
+            </view>
+            <view color="#000">
+              {{Array.isArray(answer.answer) ? answer.answer.join(', ') : answer.answer}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    
     <view m="20" bgWhite rounded="16" color="#999" p="40">
       <view mb="40">服务详情</view>
       <u-parse :content="data.description"></u-parse>
     </view>
     <view fixed bottom="0" w="100%" bgWhite class="footer">
-      <button @click="handleClick" class="btn" my="20" mx="75">我要申请</button>
+      <button v-if="data.apply.code === 0" @click="handleClick" class="btn" my="20" mx="75">我要申请</button>
+      <button v-else class="btn" my="20" mx="75" disabled>{{data.apply.shortMessage}}</button>
     </view>
   </view>
 </template>
@@ -44,7 +79,10 @@ import $ from 'miaoxing';
 export default {
   data() {
     return {
-      data: {},
+      data: {
+        apply: {},
+      },
+      userService: {},
     };
   },
   onShow() {
@@ -52,7 +90,7 @@ export default {
   },
   methods: {
     getData() {
-      const id = $.req('id') || '40936335342993093';
+      const id = $.req('id') || '40758145248178372';
       
       $.http({
         url: 'services/' + id,
@@ -63,6 +101,12 @@ export default {
         }
 
         this.data = ret.data;
+      });
+      
+      $.http({
+        url: 'user-service?serviceId=' + id,
+      }).then(({ret}) => {
+        this.userService = ret.data;
       });
       
       $.post({
