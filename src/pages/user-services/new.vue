@@ -119,6 +119,7 @@ export default {
       
       $.post({
         url: 'user-services',
+        loading: true,
         data: {
           serviceId: this.data.id,
           answers: this.answers
