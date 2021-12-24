@@ -8,7 +8,7 @@
         <view flex>
           <open-data text="36" type="userNickName"></open-data>
           <view ml="16">
-            <u-tag v-if="member.id" text="会员" type="warning" size="mini" shape="circle"></u-tag>
+            <u-tag v-if="member.id" @click="handleClickMember" text="会员" type="warning" size="mini" shape="circle"></u-tag>
           </view>
         </view>
         <view v-if="user.mobile" color="#999999">{{user.mobile.substr(0, 3) + '****' + user.mobile.substr(7)}}</view>
@@ -51,5 +51,12 @@ export default {
       this.accessMember = ret.accessMember;
     });
   },
+  methods: {
+    handleClickMember() {
+      uni.navigateTo({
+        url: '/pages/members/new',
+      });
+    }
+  }
 };
 </script>

@@ -5,7 +5,7 @@
         <open-data type="userAvatarUrl"></open-data>
       </view>
       <view toCenterY ml12>
-        <oepn-data type="userNickName">用户昵称</oepn-data>
+        <open-data type="userNickName"></open-data>
       </view>
     </view>
     <view bgWhite m="20" h="98" toCenterY rounded="16">

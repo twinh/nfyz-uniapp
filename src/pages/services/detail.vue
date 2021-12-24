@@ -67,7 +67,9 @@
       <u-parse :content="data.description"></u-parse>
     </view>
     <view fixed bottom="0" w="100%" bgWhite class="footer">
-      <button v-if="data.apply.code === 0" @click="handleClick" class="btn" my="20" mx="75">我要申请</button>
+      <button v-if="data.apply.code === 0" @click="handleClick" class="btn" my="20" mx="75">
+        {{data.apply.shortMessage || '我要申请'}}
+      </button>
       <button v-else class="btn" my="20" mx="75" disabled>{{data.apply.shortMessage}}</button>
     </view>
   </view>
@@ -90,7 +92,7 @@ export default {
   },
   methods: {
     getData() {
-      const id = $.req('id') || '41531977548193793';
+      const id = $.req('id') || '41540010116165056';
       
       $.http({
         url: 'services/' + id,
@@ -114,6 +116,13 @@ export default {
       });
     },
     handleClick() {
+      if (this.data.apply.next) {
+        uni.navigateTo({
+          url: this.data.apply.next,
+        });
+        return;
+      }
+      
       if (this.data.type === 1) {
         uni.navigateTo({
           url: '/pages/user-services/new?serviceId=' + this.data.id,
