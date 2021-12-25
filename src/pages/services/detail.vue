@@ -43,19 +43,18 @@
         <view 
             v-for="(answer, index) in userService.answers" 
             :key="answer.id"
-            pb="40"
-            flex
-            color="#666"
         >
-          <view v-if="answer.question" w="45">
-            {{index + 1}}.
-          </view>
-          <view>
-            <view mb2>
-              {{answer.question.title}}
+          <view v-if="answer.question" pb="40" flex color="#666">
+            <view w="45">
+              {{index + 1}}.
             </view>
-            <view color="#000">
-              {{Array.isArray(answer.answer) ? answer.answer.join(', ') : answer.answer}}
+            <view>
+              <view mb2>
+                {{answer.question.title}}
+              </view>
+              <view color="#000">
+                {{Array.isArray(answer.answer) ? answer.answer.join(', ') : answer.answer}}
+              </view>
             </view>
           </view>
         </view>
@@ -93,7 +92,7 @@ export default {
   },
   methods: {
     getData() {
-      const id = $.req('id') || '41540010116165056';
+      const id = $.req('id') || '40758145248178372';
       
       $.http({
         url: 'services/' + id,

@@ -10,6 +10,18 @@
 			}
 		},
 		{
+			"path": "pages/user-services/index",
+			"style": {
+				"navigationBarTitleText": "我申请的职工服务"
+			}
+		},
+		{
+			"path": "pages/access-member/apply",
+			"style": {
+				"navigationBarTitleText": "门禁申请"
+			}
+		},
+		{
 			"path": "pages/members/new",
 			"style": {
 				"navigationBarTitleText": "注册会员"
@@ -19,12 +31,6 @@
 			"path": "pages/user/index",
 			"style": {
 				"navigationBarTitleText": "个人中心"
-			}
-		},
-		{
-			"path": "pages/user-services/index",
-			"style": {
-				"navigationBarTitleText": "我申请的职工服务"
 			}
 		},
 		{
@@ -57,12 +63,6 @@
 			"path": "pages/monitors/detail",
 			"style": {
 				"navigationBarTitleText": "查看监控"
-			}
-		},
-		{
-			"path": "pages/access-member/apply",
-			"style": {
-				"navigationBarTitleText": "门禁申请"
 			}
 		},
 		{
