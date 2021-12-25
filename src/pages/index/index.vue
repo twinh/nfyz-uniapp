@@ -31,7 +31,7 @@
 
 <script>
 import $ from 'miaoxing';
-import MxTitle from '@/components/mx-title';
+import getUserProfile from '@/common/getUserProfile';
 
 export default {
   data() {
@@ -82,27 +82,12 @@ export default {
           url: '/pages/access-member/apply',
         });
         return;
-      } 
-      
-      uni.getUserProfile({
-        desc: '用于完善会员资料',
-        success: (res) => {
-          $.http({
-            url: 'wechat-mp/user',
-            method: 'PATCH',
-            data: res.userInfo,
-            loading: true,
-          }).then(({ret}) => {
-            if (ret.isErr()) {
-              $.ret(ret);
-              return;
-            }
+      }
 
-            uni.navigateTo({
-              url: '/pages/access-member/apply',
-            });
-          });
-        },
+      getUserProfile(() => {
+        uni.navigateTo({
+          url: '/pages/access-member/apply',
+        });
       });
     },
   },
