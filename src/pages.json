@@ -4,12 +4,6 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/user/index",
-			"style": {
-				"navigationBarTitleText": "个人中心"
-			}
-		},
-		{
 			"path": "pages/services/detail",
 			"style": {
 				"navigationBarTitleText": "职工服务详情"
@@ -19,6 +13,12 @@
 			"path": "pages/members/new",
 			"style": {
 				"navigationBarTitleText": "注册会员"
+			}
+		},
+		{
+			"path": "pages/user/index",
+			"style": {
+				"navigationBarTitleText": "个人中心"
 			}
 		},
 		{

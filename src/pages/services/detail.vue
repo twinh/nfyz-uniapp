@@ -77,6 +77,7 @@
 
 <script>
 import $ from 'miaoxing';
+import appendUrl from 'append-url';
 
 export default {
   data() {
@@ -116,9 +117,27 @@ export default {
       });
     },
     handleClick() {
-      if (this.data.apply.next) {
-        uni.navigateTo({
-          url: this.data.apply.next,
+      if (this.data.apply.requireMember) {
+        uni.getUserProfile({
+          desc: '用于完善会员资料',
+          success: (res) => {
+            $.http({
+              url: 'wechat-mp/user',
+              method: 'PATCH',
+              data: res.userInfo,
+              loading: true,
+            }).then(({ret}) => {
+              if (ret.isErr()) {
+                $.ret(ret);
+                return;
+              }
+              uni.navigateTo({
+                url: appendUrl('/pages/members/new', {
+                  next: '/pages/user-services/new?serviceId=' + this.data.id,
+                }),
+              });
+            });
+          },
         });
         return;
       }

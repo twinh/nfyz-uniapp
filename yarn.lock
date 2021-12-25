@@ -2511,6 +2511,13 @@ anymatch@^3.0.0, anymatch@^3.0.3, anymatch@~3.1.2:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
+append-url@^1.0.14:
+  version "1.0.14"
+  resolved "https://registry.npmmirror.com/append-url/download/append-url-1.0.14.tgz#a855c203a3d456246b2039419336097fa4fbb603"
+  integrity sha1-qFXCA6PUViRrIDlBkzYJf6T7tgM=
+  dependencies:
+    jquery-param "^1.0.2"
+
 aproba@^1.1.1:
   version "1.2.0"
   resolved "https://registry.nlark.com/aproba/download/aproba-1.2.0.tgz#6802e6264efd18c790a1b0d517f0f2627bf2c94a"
@@ -6948,6 +6955,11 @@ jest@^25.4.0:
     "@jest/core" "^25.5.4"
     import-local "^3.0.2"
     jest-cli "^25.5.4"
+
+jquery-param@^1.0.2:
+  version "1.1.8"
+  resolved "https://registry.nlark.com/jquery-param/download/jquery-param-1.1.8.tgz#1b29be3dae38031b02143a6e3db374af6c6739ac"
+  integrity sha1-Gym+Pa44AxsCFDpuPbN0r2xnOaw=
 
 js-message@1.0.7:
   version "1.0.7"

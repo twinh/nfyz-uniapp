@@ -63,6 +63,7 @@
     "@fower/uni-template-compiler": "^1.63.0",
     "@fower/uniapp": "^1.63.0",
     "@vue/shared": "^3.0.0",
+    "append-url": "^1.0.14",
     "core-js": "^3.6.5",
     "flyio": "^0.6.2",
     "miaoxing": "^0.3.0",
