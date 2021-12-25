@@ -36,7 +36,7 @@
           border="none"
           v-model="data.no"
       >
-        <image w="42" ml="20" mr="12" slot="prefix" src="/static/input-name.png" mode="widthFix"/>
+        <image w="42" ml="22" mr="12" slot="prefix" src="/static/input-no.png" mode="widthFix"/>
         <view @click="handleClickTag" slot="suffix" mr5 color="#f56c6c">
           加入工会享受福利
         </view>
