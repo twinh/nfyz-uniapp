@@ -116,18 +116,23 @@ export default {
           return;
         }
       }
-      
-      $.post({
-        url: 'user-services',
-        loading: true,
-        data: {
-          serviceId: this.data.id,
-          answers: this.answers
-        },
-      }).then(({ret}) => {
-        $.ret(ret).suc(() => {
-          uni.navigateBack();
-        });
+
+      uni.requestSubscribeMessage({
+        tmplIds: [this.data.subscribeMessageTmplId],
+        complete: () => {
+          $.post({
+            url: 'user-services',
+            loading: true,
+            data: {
+              serviceId: this.data.id,
+              answers: this.answers
+            },
+          }).then(({ret}) => {
+            $.ret(ret).suc(() => {
+              uni.navigateBack();
+            });
+          });
+        }
       });
     },
   },
