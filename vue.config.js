@@ -1,4 +1,5 @@
 module.exports = {
+  transpileDependencies: ['uview-ui'],
   chainWebpack(config) {
     config.module
       .rule('vue')

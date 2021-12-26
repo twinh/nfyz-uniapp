@@ -4,6 +4,32 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/admin/services/index",
+			"style": {
+				"navigationBarTitleText": "职工服务管理"
+			}
+		},
+		{
+			"path": "pages/admin/user-services/index",
+			"style": {
+				"navigationBarTitleText": "职工服务申请管理"
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "暖蜂驿站",
+				"navigationBarBackgroundColor": "#F8B500",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/user/index",
+			"style": {
+				"navigationBarTitleText": "个人中心"
+			}
+		},
+		{
 			"path": "pages/services/detail",
 			"style": {
 				"navigationBarTitleText": "职工服务详情"
@@ -28,12 +54,6 @@
 			}
 		},
 		{
-			"path": "pages/user/index",
-			"style": {
-				"navigationBarTitleText": "个人中心"
-			}
-		},
-		{
 			"path": "pages/user-services/new",
 			"style": {
 				"navigationBarTitleText": "申请职工服务"
@@ -46,14 +66,6 @@
 			}
 		},
 		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "暖蜂驿站",
-				"navigationBarBackgroundColor": "#F8B500",
-				"navigationBarTextStyle": "white"
-			}
-		},
-		{
 			"path": "pages/monitors/index",
 			"style": {
 				"navigationBarTitleText": "实时监控"
@@ -63,12 +75,6 @@
 			"path": "pages/monitors/detail",
 			"style": {
 				"navigationBarTitleText": "查看监控"
-			}
-		},
-		{
-			"path": "pages/admin/services/index",
-			"style": {
-				"navigationBarTitleText": "职工服务管理"
 			}
 		}
 	],

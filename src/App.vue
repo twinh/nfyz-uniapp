@@ -55,6 +55,10 @@ export default {
       border: 0;
     }
   }
+  
+  .btn-danger {
+    background: #f56c6c;
+  }
 
   .btn-sm {
     background: #F8B500;
@@ -67,6 +71,24 @@ export default {
     
     &::after {
       border: 0;
+    }
+  }
+
+  .btn-group {
+    display: flex;
+
+    > .btn {
+      flex: 1;
+    }
+
+    & > .btn:not(:last-child) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    & > .btn:not(:first-child) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
   }
 </style>
