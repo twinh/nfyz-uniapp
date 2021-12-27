@@ -9,95 +9,110 @@
       </view>
     </view>
 
-    <view bgWhite m="20" h="98" toCenterY rounded="16">
-      <u-input
-          placeholder="请输入您的姓名"
-          border="none"
-          v-model="data.name"
-      >
-        <image w="42" ml="20" mr="12" slot="prefix" src="/static/input-name.png" mode="widthFix"/>
-      </u-input>
-    </view>
-
-    <view bgWhite m="20" h="98" toCenterY rounded="16">
-      <image w="42" ml="20" mr="12" slot="prefix" src="/static/input-mobile.png" mode="widthFix"/>
-      <button class="btn-none btn-input" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber"
-          :style="{color: data.mobile ? '#303133' : '#c0c4cc'}"
-      >
-        {{data.mobile || '请授权您的手机号'}}
-      </button>
-    </view>
-
-    <view bgWhite m="20" h="98" toCenterY rounded="16">
-      <u-input
-          placeholder="请输入您的身份证"
-          border="none"
-          v-model="data.idCard"
-      >
-        <image w="42" ml="20" mr="12" slot="prefix" src="/static/input-no.png" mode="widthFix"/>
-      </u-input>
-    </view>
-
-    <view @click="showJobType = true" bgWhite m="20" h="98" toCenterY rounded="16">
-      <image w="42" ml="20" mr="12" slot="prefix" src="/static/input-mobile.png" mode="widthFix"/>
-      <view ml2>
-        <view :style="{color: jobTypeName ? '#000' : '#c0c4cc'}">
-          {{ jobTypeName || '请选择您的职业类型' }}
-        </view>
-      </view>
-      <u-picker :show="showJobType" :columns="jobTypeColumns" keyName="name" closeOnClickOverlay
-          @confirm="handleConfirmJobType" @cancel="showJobType = false" @close="showJobType = false">
-      </u-picker>
-    </view>
-
-    <view v-if="data.jobType === 3" bgWhite m="20" h="98" toCenterY rounded="16">
-      <u-input
-          placeholder="请输入您的职业"
-          border="none"
-          v-model="data.jobName"
-      >
-        <image w="42" ml="20" mr="12" slot="prefix" src="/static/input-mobile.png" mode="widthFix"/>
-        <view slot="suffix" @click="showJobName = true" mr="20" color="#0091FF">
-          选择
-        </view>
-      </u-input>
-    </view>
-    <u-picker
-        :show="showJobName"
-        :columns="jobNameColumns"
-        closeOnClickOverlay
-        @confirm="handleConfirmJobName"
-        @cancel="showJobName = false"
-        @close="showJobName = false">
-    </u-picker>
-    
-    <view m="20" flex>
-      <view bgWhite rounded="16" flex="1" toCenter>
-        <u-upload
-            :fileList="fileList1"
-            name="1"
-            :maxCount="1"
-            @afterRead="afterRead"
-            @delete="deletePic"
-            width="100"
-            height="100"
+    <u-form
+        labelWidth="64"
+    >
+      <view bgWhite m="20" rounded="16" pl8>
+        <u-form-item
+            label="姓名"
         >
-          <view toCenter column>
-            <image w="61" src="/static/camera.png" mode="widthFix"/>
-            <view mt="16" color="#ccc">点击上传照片</view>
-          </view>
-        </u-upload>
+          <u-input
+              v-model="data.name"
+              border="none"
+              placeholder="请输入您的姓名"
+          ></u-input>
+        </u-form-item>
       </view>
-      <view ml="20" bgWhite rounded="16" flex="1">
-        <view p="32" toCenter column>
-          <image w="116" src="/static/face.png" mode="widthFix"/>
-          <view mt="16" text="24" color="#ccc">正确示例：五官清晰</view>
+  
+      <view bgWhite m="20" rounded="16" pl8>
+        <u-form-item
+            label="手机号"
+        >
+          <button class="btn-none btn-input" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber"
+              :style="{color: data.mobile ? '#303133' : '#c0c4cc'}"
+          >
+            {{data.mobile || '请授权您的手机号'}}
+          </button>
+        </u-form-item>
+      </view>
+
+      <view bgWhite m="20" rounded="16" pl8>
+        <u-form-item
+            label="身份证"
+        >
+          <u-input
+              v-model="data.idCard"
+              border="none"
+              placeholder="请输入您的身份证"
+          ></u-input>
+        </u-form-item>
+      </view>
+
+      <view @click="showJobType = true" bgWhite m="20" rounded="16" pl8>
+        <u-form-item
+            label="类别"
+        >
+          <view :style="{color: jobTypeName ? '#000' : '#c0c4cc'}">
+            {{ jobTypeName || '请选择您的类别' }}
+          </view>
+        </u-form-item>
+        <u-picker :show="showJobType" :columns="jobTypeColumns" keyName="name" closeOnClickOverlay
+            @confirm="handleConfirmJobType" @cancel="showJobType = false" @close="showJobType = false">
+        </u-picker>
+      </view>
+  
+      <view v-if="data.jobType === 3" bgWhite m="20" rounded="16" pl8>
+        <u-form-item
+            label="职业"
+        >
+          <u-input
+              placeholder="请输入您的职业"
+              border="none"
+              v-model="data.jobName"
+          >
+            <view slot="suffix" @click="showJobName = true" mr="20" color="#0091FF">
+              选择
+            </view>
+          </u-input>
+        </u-form-item>
+        <u-picker
+            :show="showJobName"
+            :columns="jobNameColumns"
+            closeOnClickOverlay
+            @confirm="handleConfirmJobName"
+            @cancel="showJobName = false"
+            @close="showJobName = false">
+        </u-picker>
+      </view>
+      
+      <view m="20" flex>
+        <view bgWhite rounded="16" flex="1" toCenter>
+          <u-upload
+              :fileList="fileList1"
+              name="1"
+              :maxCount="1"
+              @afterRead="afterRead"
+              @delete="deletePic"
+              width="100"
+              height="100"
+          >
+            <view toCenter column>
+              <image w="61" src="/static/camera.png" mode="widthFix"/>
+              <view mt="16" color="#ccc">点击上传照片</view>
+            </view>
+          </u-upload>
+        </view>
+        <view ml="20" bgWhite rounded="16" flex="1">
+          <view p="32" toCenter column>
+            <image w="116" src="/static/face.png" mode="widthFix"/>
+            <view mt="16" text="24" color="#ccc">正确示例：五官清晰</view>
+          </view>
         </view>
       </view>
-    </view>
-    <view m="75">
-      <button class="btn" @click="handleClick">提交</button>
-    </view>
+      <view m="75">
+        <button class="btn" @click="handleClick">提交</button>
+      </view>
+    </u-form>
   </view>
 </template>
 
@@ -268,6 +283,20 @@ export default {
 </script>
 
 <style lang="scss">
+.btn-input {
+  margin: 0;
+  line-height: 1;
+  text-align: left;
+}
+
+.u-form-item__body {
+  padding: 24rpx 0 !important;
+}
+
+.u-form-item__body__left__content__label {
+  height: 24px;
+}
+
 .u-upload {
   flex: none !important;
 }
