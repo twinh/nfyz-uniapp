@@ -91,4 +91,19 @@ export default {
       border-bottom-left-radius: 0;
     }
   }
+
+  .btn-none {
+    background: none;
+
+    &::after {
+      border: 0;
+    }
+  }
+
+  .btn-input {
+    margin-left: 8rpx;
+    margin-right: 0;
+    padding: 0;
+    font-size: 15px;
+  }
 </style>

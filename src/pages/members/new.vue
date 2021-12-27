@@ -18,17 +18,12 @@
       </u-input>
     </view>
     <view bgWhite m="20" h="98" toCenterY rounded="16">
-      <u-input
-          placeholder="请授权您的手机号"
-          border="none"
-          v-model="data.mobile"
+      <image w="42" ml="20" mr="12" slot="prefix" src="/static/input-mobile.png" mode="widthFix"/>
+      <button class="btn-none btn-input" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber"
+          :style="{color: data.mobile ? '#303133' : '#c0c4cc'}"
       >
-        <image w="42" ml="20" mr="12" slot="prefix" src="/static/input-mobile.png" mode="widthFix"/>
-        <button class="btn-none" slot="suffix" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber" mr5
-            color="#0091FF">
-          一键获取
-        </button>
-      </u-input>
+        {{data.mobile || '请授权您的手机号'}}
+      </button>
     </view>
     <view bgWhite m="20" h="98" toCenterY rounded="16">
       <u-input
@@ -123,11 +118,4 @@ export default {
 </script>
 
 <style lang="scss">
-.btn-none {
-  background: none;
-
-  &::after {
-    border: 0;
-  }
-}
 </style>
