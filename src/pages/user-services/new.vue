@@ -72,6 +72,24 @@
           </u-form-item>
         </view>
 
+        <view v-else-if="question.type === 5" m="20" px="20" py="6" bgWhite rounded="16">
+          <u-form-item
+              :label="question.title"
+              :required="question.isRequired"
+          >
+            <u-input
+                v-model="answers[question.id]"
+                border="none"
+                placeholder="请输入手机号码"
+            >
+              <button class="btn-none btn-input" slot="suffix" open-type="getPhoneNumber" 
+                  @getphonenumber="getPhoneNumber" mr5 color="#0091FF">
+                一键获取
+              </button>
+            </u-input>
+          </u-form-item>
+        </view>
+        
         <view v-else-if="question.type === 6" m="20" px="20" py="6" bgWhite rounded="16">
           <u-form-item
               :label="question.title"
@@ -143,6 +161,28 @@ export default {
             this.streets = ret.data;
           });
           break;
+        }
+      });
+    },
+
+    async getPhoneNumber(e) {
+      if (!e.detail.iv) {
+        return;
+      }
+
+      const {ret} = await $.patch({
+        url: 'wechat-mp-mobile?save=0',
+        data: e.detail,
+      });
+      if (ret.isErr()) {
+        $.ret(ret);
+        return;
+      }
+
+      this.data.questions.forEach((question) => {
+        if (question.type === 5) {
+          this.answers[question.id] = ret.mobile;
+          this.$forceUpdate();
         }
       });
     },
