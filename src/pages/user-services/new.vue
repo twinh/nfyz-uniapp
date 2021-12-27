@@ -69,7 +69,29 @@
                 </view>
               </u-checkbox-group>
             </view>
+          </u-form-item>
         </view>
+
+        <view v-else-if="question.type === 6" m="20" px="20" py="6" bgWhite rounded="16">
+          <u-form-item
+              :label="question.title"
+              :required="question.isRequired"
+          >
+            <view mt="20">
+              <u-radio-group
+                  v-model="answers[question.id]"
+                  placement="column"
+                  activeColor="black"
+                  @change="handleGroupChange"
+              >
+                <view v-for="street in streets" pb="24" :key="street.id">
+                  <u-radio :label="street.name" :name="street.name"></u-radio>
+                </view>
+              </u-radio-group>
+            </view>
+          </u-form-item>
+        </view>
+
       </view>
       <view m="75">
         <button class="btn" @click="handleClick">提交申请</button>
@@ -88,6 +110,8 @@ export default {
         questions: [],
       },
       answers: {},
+      streets: [],
+      streetId: 0,
     };
   },
   onShow() {
@@ -96,7 +120,7 @@ export default {
   methods: {
     getData() {
       $.http({
-        url: 'services/' + ($.req('serviceId') || '40758145248178372'),
+        url: 'services/' + ($.req('serviceId') || '42788380612723258'),
       }).then(({ret}) => {
         if (ret.isErr()) {
           $.ret(ret);
@@ -104,8 +128,29 @@ export default {
         }
 
         this.data = ret.data;
+        
+        for (const question of this.data.questions) {
+          if (question.type !== 6) {
+            continue;
+          }
+          $.http({
+            url: 'streets',
+          }).then(({ret}) => {
+            if (ret.isErr()) {
+              $.ret(ret);
+              return;
+            }
+            this.streets = ret.data;
+          });
+          break;
+        }
       });
     },
+    
+    handleGroupChange(streetName) {
+      this.streetId = this.streets.find(street => street.name === streetName).id;
+    },
+    
     handleClick() {
       for (const i in this.data.questions) {
         const question = this.data.questions[i];
@@ -125,6 +170,7 @@ export default {
             loading: true,
             data: {
               serviceId: this.data.id,
+              streetId: this.streetId,
               answers: this.answers
             },
           }).then(({ret}) => {

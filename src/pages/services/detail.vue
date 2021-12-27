@@ -93,7 +93,7 @@ export default {
   },
   methods: {
     getData() {
-      const id = $.req('id') || '40758145248178372';
+      const id = $.req('id') || '42788380612723258';
       
       $.http({
         url: 'services/' + id,
