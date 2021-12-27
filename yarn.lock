@@ -10908,9 +10908,9 @@ uuid@^8.3.2:
   integrity sha1-gNW1ztJxu5r2xEXyGhoExgbO++I=
 
 uview-ui@^2.0.13:
-  version "2.0.15"
-  resolved "https://registry.npmmirror.com/uview-ui/download/uview-ui-2.0.15.tgz#9d11828c023ae4c9c5b93a8649c5a94f3ea8ee8c"
-  integrity sha512-sLpa1llrseaKsNmzjsNDFntlT5OkvBy3j1Loc/y5okUW6ICG5Xun95pTra/17RsT17Z4TbBB1w1IQKEMAIcftQ==
+  version "2.0.17"
+  resolved "https://registry.npmmirror.com/uview-ui/download/uview-ui-2.0.17.tgz#11af3f3f667248f0852871f2c9ba08eb7430b5aa"
+  integrity sha512-2EuLNwkMO25Aj9m5yntrMDolduHG+sk7BrfYiNXjZw75JEdBC4EX+YQGqBhx11bsVyp/eN2EFLR5cLGy7TLcDg==
 
 v8-to-istanbul@^4.1.3:
   version "4.1.4"

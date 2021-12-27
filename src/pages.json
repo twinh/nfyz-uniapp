@@ -4,6 +4,12 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/access-member/apply",
+			"style": {
+				"navigationBarTitleText": "门禁申请"
+			}
+		},
+		{
 			"path": "pages/admin/services/index",
 			"style": {
 				"navigationBarTitleText": "职工服务管理"
@@ -39,12 +45,6 @@
 			"path": "pages/user-services/index",
 			"style": {
 				"navigationBarTitleText": "我申请的职工服务"
-			}
-		},
-		{
-			"path": "pages/access-member/apply",
-			"style": {
-				"navigationBarTitleText": "门禁申请"
 			}
 		},
 		{

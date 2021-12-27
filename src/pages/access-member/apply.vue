@@ -31,6 +31,49 @@
         </button>
       </u-input>
     </view>
+    <view bgWhite m="20" h="98" toCenterY rounded="16">
+      <u-input
+          placeholder="请输入您的身份证"
+          border="none"
+          v-model="data.idCard"
+      >
+        <image w="42" ml="20" mr="12" slot="prefix" src="/static/input-no.png" mode="widthFix"/>
+      </u-input>
+    </view>
+
+    <view @click="showJobType = true" bgWhite m="20" h="98" toCenterY rounded="16">
+      <image w="42" ml="20" mr="12" slot="prefix" src="/static/input-mobile.png" mode="widthFix"/>
+      <view ml2>
+        <view :style="{color: jobTypeName ? '#000' : '#c0c4cc'}">
+          {{ jobTypeName || '请选择您的职业类型' }}
+        </view>
+      </view>
+      <u-picker :show="showJobType" :columns="jobTypeColumns" keyName="name" closeOnClickOverlay
+          @confirm="handleConfirmJobType" @cancel="showJobType = false" @close="showJobType = false">
+      </u-picker>
+    </view>
+
+    <view v-if="data.jobType === 3" bgWhite m="20" h="98" toCenterY rounded="16">
+      <u-input
+          placeholder="请输入您的职业"
+          border="none"
+          v-model="data.jobName"
+      >
+        <image w="42" ml="20" mr="12" slot="prefix" src="/static/input-mobile.png" mode="widthFix"/>
+        <view slot="suffix" @click="showJobName = true" mr="20" color="#0091FF">
+          选择
+        </view>
+      </u-input>
+    </view>
+    <u-picker
+        :show="showJobName"
+        :columns="jobNameColumns"
+        closeOnClickOverlay
+        @confirm="handleConfirmJobName"
+        @cancel="showJobName = false"
+        @close="showJobName = false">
+    </u-picker>
+    
     <view m="20" flex>
       <view bgWhite rounded="16" flex="1" toCenter>
         <u-upload
@@ -72,8 +115,47 @@ export default {
         name: '',
         mobile: '',
         faceUrl: '',
+        idCard: '',
+        jobType: '',
+        jobName: '',
       },
+
+      showJobType: false,
+      jobTypeColumns: [
+        [
+          {
+            name: '群众',
+            value: 1,
+          },
+          {
+            name: '工作人员',
+            value: 2,
+          },
+          {
+            name: '灵活就业人员',
+            value: 3,
+          },
+        ],
+      ],
+
+      showJobName: false,
+      jobNameColumns: [
+        [
+          '骑手',
+          '快递员',
+          '网约车司机',
+          '环卫工人',
+        ],
+      ],
     };
+  },
+  computed: {
+    jobTypeName() {
+      const jobTypeColumn = this.jobTypeColumns[0].find(jobTypeColumn => {
+        return jobTypeColumn.value === this.data.jobType;
+      });
+      return jobTypeColumn?.name;
+    },
   },
   mounted() {
     $.http({
@@ -88,6 +170,9 @@ export default {
       const user = ret.data.user;
       this.data.name = user.name;
       this.data.mobile = user.mobile;
+      this.data.idCard = ret.data.idCard;
+      this.data.jobType = ret.data.jobType;
+      this.data.jobName = ret.data.jobName;
 
       if (ret.data.faceUrl) {
         this.data.faceUrl = ret.data.faceUrl;
@@ -115,6 +200,14 @@ export default {
       }
       this.data.mobile = ret.mobile;
     },
+    handleConfirmJobType(e) {
+      this.data.jobType = e.value[0].value;
+      this.showJobType = false;
+    },
+    handleConfirmJobName(e) {
+      this.data.jobName = e.value[0];
+      this.showJobName = false;
+    },
     async handleClick() {
       const {ret} = await $.patch({
         url: 'access-member',
@@ -124,10 +217,10 @@ export default {
         $.ret(ret);
         return;
       }
-      
+
       await $.ret(ret);
       uni.redirectTo({
-        url: '/pages/index/index'
+        url: '/pages/index/index',
       });
     },
     // 删除图片
