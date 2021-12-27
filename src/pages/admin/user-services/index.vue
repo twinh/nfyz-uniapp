@@ -3,10 +3,28 @@
     <view bgWhite>
       <u-tabs :list="list" @click="handleClickTab" lineColor="#F8B500" :current="current"></u-tabs>
     </view>
+
+    <view @click="showStreet = true" bgWhite m="20" rounded="16" pl8>
+      <u-form
+          labelWidth="80"
+      >
+        <u-form-item
+            label="选择街道"
+        >
+          <view :style="{color: streetName ? '#000' : '#c0c4cc'}">
+            {{ streetName || '请选择选择街道' }}
+          </view>
+        </u-form-item>
+        <u-picker :show="showStreet" :columns="streetColumns" keyName="name" closeOnClickOverlay
+            @confirm="handleConfirmStreet" @cancel="showStreet = false" @close="showStreet = false">
+        </u-picker>
+      </u-form>
+    </view>
+    
     <mx-list
         ref="userServiceList"
         url="admin-user-services"
-        :query="{serviceId, status}"
+        :query="{serviceId, status, streetId}"
     >
       <template v-slot="{data}">
         <view
@@ -41,7 +59,8 @@
           </view>
 
           <view color="#666">
-            <view text="24" mt2>状态：{{ userService.statusName }}</view>
+            <view text="24" mt2>申请状态：{{ userService.statusName }}</view>
+            <view v-if="userService.street" text="24" mt2>所属街道：{{ userService.street.name }}</view>
             <view text="24" mt2>申请时间：{{ userService.createdAt }}</view>
             <view text="24" mt2>完成时间：{{ userService.processedAt || '-' }}</view>
           </view>
@@ -73,6 +92,14 @@ export default {
   components: {
     MxList,
   },
+  computed: {
+    streetName() {
+      const streetColumn = this.streetColumns[0].find(streetColumn => {
+        return streetColumn.id === this.streetId;
+      });
+      return streetColumn?.name;
+    },
+  },
   data() {
     return {
       status: '',
@@ -91,11 +118,40 @@ export default {
         status: 3,
         name: '已完成',
       }],
+
+      streetId: '',
+      showStreet: false,
+      streetColumns: [
+        [
+          {
+            name: '群众',
+            value: 1,
+          },
+          {
+            name: '工作人员',
+            value: 2,
+          },
+          {
+            name: '灵活就业人员',
+            value: 3,
+          },
+        ],
+      ],
     };
   },
   onShow() {
     this.serviceId = $.req('serviceId') || '40758145248178372';
     this.getData();
+    
+    $.http({
+      url: 'streets',
+    }).then(({ret}) => {
+      if (ret.isErr()) {
+        $.ret(ret);
+        return;
+      }
+      this.streetColumns[0] = ret.data;
+    }); 
   },
   methods: {
     getData() {
@@ -104,6 +160,11 @@ export default {
     handleClickTab(item) {
       this.status = item.status;
       this.current = item.index;
+      this.getData();
+    },
+    handleConfirmStreet(e) {
+      this.streetId = e.value[0].id;
+      this.showStreet = false;
       this.getData();
     },
     handleClickProcessing(id) {
