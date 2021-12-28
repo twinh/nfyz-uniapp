@@ -4,6 +4,32 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "暖蜂驿站",
+				"navigationBarBackgroundColor": "#F8B500",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/user-services/new",
+			"style": {
+				"navigationBarTitleText": "申请职工服务"
+			}
+		},
+		{
+			"path": "pages/services/detail",
+			"style": {
+				"navigationBarTitleText": "职工服务详情"
+			}
+		},
+		{
+			"path": "pages/admin/user-services/index",
+			"style": {
+				"navigationBarTitleText": "职工服务申请管理"
+			}
+		},
+		{
 			"path": "pages/access-member/apply",
 			"style": {
 				"navigationBarTitleText": "门禁申请"
@@ -16,29 +42,9 @@
 			}
 		},
 		{
-			"path": "pages/admin/user-services/index",
-			"style": {
-				"navigationBarTitleText": "职工服务申请管理"
-			}
-		},
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "暖蜂驿站",
-				"navigationBarBackgroundColor": "#F8B500",
-				"navigationBarTextStyle": "white"
-			}
-		},
-		{
 			"path": "pages/user/index",
 			"style": {
 				"navigationBarTitleText": "个人中心"
-			}
-		},
-		{
-			"path": "pages/services/detail",
-			"style": {
-				"navigationBarTitleText": "职工服务详情"
 			}
 		},
 		{
@@ -51,12 +57,6 @@
 			"path": "pages/members/new",
 			"style": {
 				"navigationBarTitleText": "注册会员"
-			}
-		},
-		{
-			"path": "pages/user-services/new",
-			"style": {
-				"navigationBarTitleText": "申请职工服务"
 			}
 		},
 		{
