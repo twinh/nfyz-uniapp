@@ -4,7 +4,7 @@
       <u-tabs :list="list" @click="handleClickTab" lineColor="#F8B500" :current="current"></u-tabs>
     </view>
 
-    <view @click="showStreet = true" bgWhite m="20" rounded="16" pl8>
+    <view v-if="hasStreet" @click="showStreet = true" bgWhite m="20" rounded="16" pl8>
       <u-form
           labelWidth="80"
       >
@@ -119,6 +119,7 @@ export default {
         name: '已完成',
       }],
 
+      hasStreet: false,
       streetId: '',
       showStreet: false,
       streetColumns: [
@@ -140,18 +141,30 @@ export default {
     };
   },
   onShow() {
-    this.serviceId = $.req('serviceId') || '40758145248178372';
+    this.serviceId = $.req('serviceId') || '42777373875445967';
     this.getData();
     
     $.http({
-      url: 'streets',
+      url: 'services/' + this.serviceId,
     }).then(({ret}) => {
       if (ret.isErr()) {
         $.ret(ret);
         return;
       }
-      this.streetColumns[0] = ret.data;
-    }); 
+      
+      this.hasStreet = ret.data.hasStreet;
+      if (ret.data.hasStreet) {
+        $.http({
+          url: 'streets',
+        }).then(({ret}) => {
+          if (ret.isErr()) {
+            $.ret(ret);
+            return;
+          }
+          this.streetColumns[0] = ret.data;
+        });
+      }
+    });
   },
   methods: {
     getData() {
