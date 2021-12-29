@@ -33,22 +33,21 @@
             m="20" py="40" px="30" bgWhite rounded="16"
         >
           <view mb="40">申请内容</view>
-          <view>
-            <view
-                v-for="(answer, index) in userService.answers"
-                :key="answer.id"
-            >
-              <view v-if="answer.question" pb="40" flex color="#666">
-                <view w="45">
-                  {{ index + 1 }}.
+          <view v-if="userService.answers.length === 0" pb="40" color="#666">无</view>
+          <view
+              v-for="(answer, index) in userService.answers"
+              :key="answer.id"
+          >
+            <view v-if="answer.question" pb="40" flex color="#666">
+              <view w="45">
+                {{ index + 1 }}.
+              </view>
+              <view>
+                <view mb2>
+                  {{ answer.question.title }}
                 </view>
-                <view>
-                  <view mb2>
-                    {{ answer.question.title }}
-                  </view>
-                  <view color="#000">
-                    {{ answer.answer }}
-                  </view>
+                <view color="#000">
+                  {{ answer.answer }}
                 </view>
               </view>
             </view>
@@ -141,7 +140,7 @@ export default {
     };
   },
   onShow() {
-    this.serviceId = $.req('serviceId') || '42777373875445967';
+    this.serviceId = $.req('serviceId') || '39816724216620648';
     this.getData();
     
     $.http({
