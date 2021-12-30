@@ -18,6 +18,10 @@
         <image w="144" h="144" mb2 src="/static/service-manage.png"/>
         <view color="#999999" textCenter text="30">职工服务管理</view>
       </navigator>
+      <navigator v-else toCenter column target="miniProgram" app-id="wxb7a23c5650537af6" hover-class="none">
+        <image w="144" h="144" mb2 src="/static/apply.png"/>
+        <view color="#999999" textCenter text="30">申请入会</view>
+      </navigator>
       <navigator toCenter column url="/pages/user/index" hover-class="none">
         <image w="144" h="144" mb2 src="/static/me.png"/>
         <view color="#999999" textCenter text="30">个人中心</view>

@@ -12,12 +12,6 @@
 			}
 		},
 		{
-			"path": "pages/user-services/new",
-			"style": {
-				"navigationBarTitleText": "申请职工服务"
-			}
-		},
-		{
 			"path": "pages/services/detail",
 			"style": {
 				"navigationBarTitleText": "职工服务详情"
@@ -27,6 +21,12 @@
 			"path": "pages/admin/user-services/index",
 			"style": {
 				"navigationBarTitleText": "职工服务申请管理"
+			}
+		},
+		{
+			"path": "pages/user-services/new",
+			"style": {
+				"navigationBarTitleText": "申请职工服务"
 			}
 		},
 		{
