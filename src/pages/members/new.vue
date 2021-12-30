@@ -104,14 +104,10 @@ export default {
 
       await $.ret(ret);
 
-      const next = $.req('next');
-      if (next) {
-        uni.redirectTo({
-          url: next,
-        });
-      } else {
-        uni.navigateBack();
+      if ($.req('fromService')) {
+        uni.setStorageSync('fromMember', '1');
       }
+      uni.navigateBack();
     },
   },
 };

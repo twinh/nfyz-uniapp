@@ -93,7 +93,7 @@ export default {
   },
   methods: {
     getData() {
-      const id = $.req('id') || '42788380612723258';
+      const id = $.req('id') || '40758287264758130';
       
       $.http({
         url: 'services/' + id,
@@ -104,6 +104,12 @@ export default {
         }
 
         this.data = ret.data;
+        
+        // 如果是注册会员后返回的，触发点击
+        if (uni.getStorageSync('fromMember')) {
+          uni.removeStorageSync('fromMember');
+          this.handleClick();
+        }
       });
       
       $.http({
@@ -120,9 +126,7 @@ export default {
       if (this.data.apply.requireMember) {
         getUserProfile(() => {
           uni.navigateTo({
-            url: appendUrl('/pages/members/new', {
-              next: '/pages/user-services/new?serviceId=' + this.data.id,
-            }),
+            url: appendUrl('/pages/members/new', {fromService: '1'}),
           });
         });
         return;
