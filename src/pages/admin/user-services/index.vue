@@ -12,7 +12,7 @@
             label="选择街道"
         >
           <view :style="{color: streetName ? '#000' : '#c0c4cc'}">
-            {{ streetName || '请选择选择街道' }}
+            {{ streetName || '请选择街道' }}
           </view>
         </u-form-item>
         <u-picker :show="showStreet" :columns="streetColumns" keyName="name" closeOnClickOverlay
