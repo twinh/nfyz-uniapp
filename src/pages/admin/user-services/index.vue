@@ -11,8 +11,8 @@
         <u-form-item
             label="选择街道"
         >
-          <view :style="{color: streetName ? '#000' : '#c0c4cc'}">
-            {{ streetName || '请选择街道' }}
+          <view :style="{color: streetId ? '#000' : '#c0c4cc'}">
+            {{ streetId ? streetName : '请选择街道' }}
           </view>
         </u-form-item>
         <u-picker :show="showStreet" :columns="streetColumns" keyName="name" closeOnClickOverlay
@@ -124,23 +124,15 @@ export default {
       streetColumns: [
         [
           {
-            name: '群众',
-            value: 1,
-          },
-          {
-            name: '工作人员',
-            value: 2,
-          },
-          {
-            name: '灵活就业人员',
-            value: 3,
+            id: '',
+            name: '全部',
           },
         ],
       ],
     };
   },
   onShow() {
-    this.serviceId = $.req('serviceId') || '39816724216620648';
+    this.serviceId = $.req('serviceId') || '42777373875445967';
     this.getData();
     
     $.http({
@@ -160,7 +152,7 @@ export default {
             $.ret(ret);
             return;
           }
-          this.streetColumns[0] = ret.data;
+          this.streetColumns[0] = this.streetColumns[0].concat(ret.data);
         });
       }
     });
