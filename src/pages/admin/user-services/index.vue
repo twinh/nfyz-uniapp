@@ -136,7 +136,7 @@ export default {
     this.getData();
     
     $.http({
-      url: 'services/' + this.serviceId,
+      url: 'admin-services/' + this.serviceId,
     }).then(({ret}) => {
       if (ret.isErr()) {
         $.ret(ret);
