@@ -1,26 +1,30 @@
 <template>
   <view>
-    <view @click="showStreet = true" bgWhite m="20" rounded="16" pl8>
-      <u-form
-          labelWidth="80"
-      >
+    <view bgWhite m="20" rounded="16" pl8>
+      <u-form label-width="80">
         <u-form-item
-            label="选择街道"
+            label="街道驿站"
         >
-          <view :style="{color: streetId ? '#000' : '#c0c4cc'}">
-            {{ streetId ? streetName : '请选择街道' }}
-          </view>
+          <picker mode="multiSelector" @change="handleChange" @columnchange="handleColumnChange"
+              :value="[streetIndex, stationIndex]"
+              :range="[streets, stations]"
+              range-key="name"
+          >
+            <view class="picker">
+              <view :style="{color: selectName ? '#000' : '#c0c4cc'}">
+                {{ selectName ? selectName : '请选择' }}
+              </view>
+            </view>
+          </picker>
+
         </u-form-item>
-        <u-picker :show="showStreet" :columns="streetColumns" keyName="name" closeOnClickOverlay
-            @confirm="handleConfirmStreet" @cancel="showStreet = false" @close="showStreet = false">
-        </u-picker>
       </u-form>
     </view>
-    
+
     <MxList
         ref="list"
         url="monitors"
-        :query="{streetId}"
+        :query="{streetId, stationId}"
     >
       <template v-slot="{data}">
         <navigator
@@ -48,26 +52,29 @@ export default {
     MxList,
   },
   computed: {
-    streetName() {
-      const streetColumn = this.streetColumns[0].find(streetColumn => {
-        return streetColumn.id === this.streetId;
-      });
-      return streetColumn?.name;
+    selectName() {
+      let name = '';
+      if (this.streetIndex) {
+        name += this.streets[this.streetIndex]?.name;
+      }
+
+      if (this.stationIndex) {
+        name += '，' + this.streets[this.streetIndex].stations[this.stationIndex]?.name;
+      }
+
+      return name;
     },
   },
   data() {
-    return { 
+    return {
       streetId: '',
-      showStreet: false,
-      streetColumns: [
-        [
-          {
-            id: '',
-            name: '全部',
-          },
-        ],
-      ],
-    }
+      streetIndex: 0,
+      streets: [],
+
+      stationId: '',
+      stationIndex: 0,
+      stations: [],
+    };
   },
   onShow() {
     this.getData();
@@ -79,17 +86,30 @@ export default {
         $.ret(ret);
         return;
       }
-      this.streetColumns[0] = this.streetColumns[0].concat(ret.data);
+
+      this.streets = [{id: 0, name: '全部', stations: []}].concat(ret.data.map(street => {
+        street.stations.unshift({id: 0, name: '全部', stations: []});
+        return street;
+      }));
     });
   },
   methods: {
+    handleChange: function (e) {
+      this.streetIndex = e.detail.value[0];
+      this.streetId = this.streets[this.streetIndex].id;
+      
+      this.stationIndex = e.detail.value[1];
+      this.stationId = this.streets[this.streetIndex].stations[this.stationIndex]?.id;
+
+      this.getData();
+    },
+    handleColumnChange: function (e) {
+      if (e.detail.column === 0) {
+        this.stations = this.streets[e.detail.value].stations;
+      }
+    },
     getData() {
       this.$refs.list.reload();
-    },
-    handleConfirmStreet(e) {
-      this.streetId = e.value[0].id;
-      this.showStreet = false;
-      this.getData();
     },
   },
 };
