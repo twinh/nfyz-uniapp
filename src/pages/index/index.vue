@@ -63,6 +63,11 @@ export default {
         });
       },
     });
+    
+    const scene = $.req('scene');
+    if (scene && scene.startsWith('stationId:')) {
+      uni.setStorageSync('stationId', scene.split(':')[1]);
+    }
   },
   methods: {
     getData() {

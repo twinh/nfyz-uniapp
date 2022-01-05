@@ -124,6 +124,7 @@ export default {
     return {
       fileList1: [],
       data: {
+        stationId: '',
         name: '',
         mobile: '',
         faceUrl: '',
@@ -170,6 +171,8 @@ export default {
     },
   },
   mounted() {
+    this.data.stationId = uni.getStorageSync('stationId');
+    
     $.http({
       url: 'access-member',
       loading: true,
