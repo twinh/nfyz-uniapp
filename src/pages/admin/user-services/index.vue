@@ -146,7 +146,7 @@ export default {
       this.hasStreet = ret.data.hasStreet;
       if (ret.data.hasStreet) {
         $.http({
-          url: 'streets',
+          url: 'admin-streets',
         }).then(({ret}) => {
           if (ret.isErr()) {
             $.ret(ret);

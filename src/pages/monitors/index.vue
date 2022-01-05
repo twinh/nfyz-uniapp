@@ -80,7 +80,7 @@ export default {
     this.getData();
 
     $.http({
-      url: 'streets',
+      url: 'admin-streets',
     }).then(({ret}) => {
       if (ret.isErr()) {
         $.ret(ret);
