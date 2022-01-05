@@ -7,10 +7,10 @@ export default {
     
     const envVersion = __wxConfig.envVersion;
     let baseApiUrl;
-    if (envVersion === "release") {
-      baseApiUrl = "https://nfyz.miaoxingyun.com/m-api/";
-    } else {
+    if (envVersion === "dev") {
       baseApiUrl = "http://dev.miaoxz.com/m-api/";
+    } else {
+      baseApiUrl = "https://nfyz.miaoxingyun.com/m-api/";
     }
     this.globalData.envVersion = envVersion;
     this.globalData.baseApiUrl = baseApiUrl;
