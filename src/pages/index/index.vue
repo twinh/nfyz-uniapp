@@ -69,6 +69,11 @@ export default {
       uni.setStorageSync('stationId', scene.split(':')[1]);
     }
   },
+  onShareAppMessage() {
+    return {
+      title: '暖蜂驿站'
+    };
+  },
   methods: {
     getData() {
       $.http({
