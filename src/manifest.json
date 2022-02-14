@@ -58,7 +58,13 @@
 		"setting": {
 			"urlCheck": false
 		},
-		"usingComponents": true
+		"usingComponents": true,
+		"plugins": {
+			"myPlugin": {
+				"version": "0.0.4",
+				"provider": "wx26dd070c090dfbdf"
+			}
+		}
 	},
 	"mp-alipay" : {
         "usingComponents" : true
