@@ -1,15 +1,15 @@
 <template>
   <view>
-    <imou-player
-        v-if="src"
-        :src="src"
-        :kitToken="data.kitToken"
-        autoplay="true"
-        controls="true"
-        poster="https://image-10001577.image.myqcloud.com/uploads/10/20211219/16399198233467.png"
-    >
-    </imou-player>
-<!--    <image block w="700" mt="230" mx="auto" src="https://image-10001577.image.myqcloud.com/uploads/10/20211219/16399198233467.png" mode="widthFix"/>-->
+    <view mt="75" rounded="22" h="396" overflow="hidden">
+      <imou-player
+          v-if="data.src"
+          :src="data.src"
+          :kitToken="data.kitToken"
+          autoplay="true"
+          controls="true"
+      >
+      </imou-player>
+    </view>
     <view m="75">
       <button class="btn" @click="handleClick">返回</button>
     </view>
@@ -22,9 +22,7 @@ import $ from 'miaoxing';
 export default {
   data() {
     return {
-      src: '',
-      data: {
-      },
+      data: {},
     };
   },
   onShow() {
@@ -42,18 +40,13 @@ export default {
           return;
         }
 
-        // https://open.imoulife.com/book/zh/light/sdk.html
-        this.src = `imou://open.lechange.com/${ret.data.outId}/0/1?streamId=0`;
         this.data = ret.data;
-
-        //this.src = 'imou://open.lechange.com/5A05BD4PAJE237E/0/1?streamId=1';
-        //this.data.kitToken = 'Kt_54f8452ce4e14795b98b965ac11d728d';
       });
     },
     handleClick() {
       uni.navigateBack();
-    }
-  }
+    },
+  },
 };
 </script>
 
