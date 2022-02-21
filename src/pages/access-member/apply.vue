@@ -227,6 +227,7 @@ export default {
       const {ret} = await $.patch({
         url: 'access-member',
         data: this.data,
+        loading: true,
       });
       if (ret.isErr()) {
         $.ret(ret);
@@ -273,6 +274,7 @@ export default {
     },
     uploadFilePromise(url) {
       return new Promise((resolve) => {
+        uni.showLoading();
         uni.uploadFile({
           url: getApp().globalData.baseApiUrl + 'access-member/face',
           header: {
@@ -289,6 +291,9 @@ export default {
             }
             resolve(ret.data.url);
           },
+          complete() {
+            uni.hideLoading();
+          }
         });
       });
     },
