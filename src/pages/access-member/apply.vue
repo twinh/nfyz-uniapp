@@ -23,7 +23,7 @@
           ></u-input>
         </u-form-item>
       </view>
-  
+
       <view bgWhite m="20" rounded="16" pl8>
         <u-form-item
             label="手机号"
@@ -31,7 +31,7 @@
           <button class="btn-none btn-input" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber"
               :style="{color: data.mobile ? '#303133' : '#c0c4cc'}"
           >
-            {{data.mobile || '请授权您的手机号'}}
+            {{ data.mobile || '请授权您的手机号' }}
           </button>
         </u-form-item>
       </view>
@@ -60,7 +60,7 @@
             @confirm="handleConfirmJobType" @cancel="showJobType = false" @close="showJobType = false">
         </u-picker>
       </view>
-  
+
       <view v-if="data.jobType === 3" bgWhite m="20" rounded="16" pl8>
         <u-form-item
             label="职业"
@@ -84,7 +84,7 @@
             @close="showJobName = false">
         </u-picker>
       </view>
-      
+
       <view m="20" flex>
         <view bgWhite rounded="16" flex="1" toCenter>
           <u-upload
@@ -172,7 +172,7 @@ export default {
   },
   mounted() {
     this.data.stationId = uni.getStorageSync('stationId');
-    
+
     $.http({
       url: 'access-member',
       loading: true,
@@ -241,6 +241,7 @@ export default {
     // 删除图片
     deletePic(event) {
       this[`fileList${event.name}`].splice(event.index, 1);
+      this.data.faceUrl = '';
     },
     // 新增图片
     async afterRead(event) {
@@ -255,13 +256,18 @@ export default {
       });
       for (let i = 0; i < lists.length; i++) {
         const result = await this.uploadFilePromise(lists[i].thumb);
-        this.data.faceUrl = result;
-        let item = this[`fileList${event.name}`][fileListLen];
-        this[`fileList${event.name}`].splice(fileListLen, 1, Object.assign(item, {
-          status: 'success',
-          message: '',
-          url: result,
-        }));
+        if (result) {
+          this.data.faceUrl = result;
+          let item = this[`fileList${event.name}`][fileListLen];
+          this[`fileList${event.name}`].splice(fileListLen, 1, Object.assign(item, {
+            status: 'success',
+            message: '',
+            url: result,
+          }));
+        } else {
+          // 上传失败清空图片，方便重新上传
+          this[`fileList${event.name}`] = [];
+        }
         fileListLen++;
       }
     },
@@ -275,8 +281,13 @@ export default {
           filePath: url,
           name: 'file',
           success(res) {
-            const data = JSON.parse(res.data);
-            resolve(data.data.url);
+            const ret = JSON.parse(res.data);
+            if (ret.code !== 0) {
+              $.alert(ret.message);
+              resolve('');
+              return;
+            }
+            resolve(ret.data.url);
           },
         });
       });
