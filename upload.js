@@ -12,7 +12,7 @@ const previewPath = path.resolve(appDirectory, './preview.jpg');
     const project = new ci.Project({
       appid: ProjectConfig.appid,
       type: "miniProgram",
-      projectPath: path.resolve(appDirectory, './dist'),
+      projectPath: path.resolve(appDirectory, './dist/build/mp-weixin'),
       privateKeyPath: argv.p,
       ignores: ["node_modules/**/*"],
     })
