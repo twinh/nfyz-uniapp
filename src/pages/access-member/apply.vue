@@ -2,10 +2,10 @@
   <view>
     <view bgWhite m="20" p="32" rounded="16" flex>
       <view w="144" h="144" rounded="100%" overflow="hidden">
-        <open-data type="userAvatarUrl"></open-data>
+        <image w="100%" h="100%" :src="data.user.avatar"/>
       </view>
       <view toCenterY ml12>
-        <open-data type="userNickName"></open-data>
+        <view text="36">{{data.user.nickName}}</view>
       </view>
     </view>
 
@@ -131,6 +131,9 @@ export default {
         idCard: '',
         jobType: '',
         jobName: '',
+        user: {
+          
+        },
       },
 
       showJobType: false,
@@ -188,6 +191,7 @@ export default {
       this.data.idCard = ret.data.idCard;
       this.data.jobType = ret.data.jobType;
       this.data.jobName = ret.data.jobName;
+      this.data.user = ret.data.user;
 
       if (ret.data.faceUrl) {
         this.data.faceUrl = ret.data.faceUrl;
