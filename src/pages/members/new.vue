@@ -2,10 +2,10 @@
   <view>
     <view bgWhite m="20" p="32" rounded="16" flex>
       <view w="144" h="144" rounded="100%" overflow="hidden">
-        <open-data type="userAvatarUrl"></open-data>
+        <image w="100%" h="100%" :src="data.user.avatar"/>
       </view>
       <view toCenterY ml12>
-        <open-data type="userNickName"></open-data>
+        <view text="36">{{data.user.nickName}}</view>
       </view>
     </view>
     <view bgWhite m="20" h="98" toCenterY rounded="16">
@@ -52,6 +52,10 @@ export default {
       data: {
         name: '',
         no: '',
+        user: {
+          avatar: '',
+          nickName: '',
+        },
       },
     };
   },
