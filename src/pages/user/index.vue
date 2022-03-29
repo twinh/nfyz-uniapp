@@ -1,12 +1,12 @@
 <template>
-  <view>
+  <view v-if="user.id">
     <view bgWhite m="20" p="32" rounded="16" flex>
       <view w="144" h="144" rounded="100%" overflow="hidden">
-        <open-data type="userAvatarUrl"></open-data>
+        <image w="100%" h="100%" :src="user.avatar"/>
       </view>
       <view toAround column ml12>
         <view flex>
-          <open-data text="36" type="userNickName"></open-data>
+          <view text="36">{{user.nickName}}</view>
           <view ml="16">
             <u-tag v-if="member.id" @click="handleClickMember" text="会员" type="warning" size="mini" shape="circle"></u-tag>
           </view>
