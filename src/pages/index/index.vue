@@ -22,10 +22,10 @@
         <image w="144" h="144" mb2 src="/static/apply.png"/>
         <view color="#999999" textCenter text="30">申请入会</view>
       </navigator>
-      <navigator toCenter column url="/pages/user/index" hover-class="none">
+      <view @click="handleClickUser" toCenter column>
         <image w="144" h="144" mb2 src="/static/me.png"/>
         <view color="#999999" textCenter text="30">个人中心</view>
-      </navigator>
+      </view>
     </view>
     <view my="100" toCenter>
       <image w="360" src="/static/logo.png" mode="widthFix"/>
@@ -42,6 +42,8 @@ export default {
     return {
       isAdmin: false,
       isMember: false,
+      user: {},
+      getUserProfile: false,
     };
   },
   onLoad() {
@@ -81,6 +83,7 @@ export default {
       }).then(({data}) => {
         this.isAdmin = data.isAdmin;
         this.isMember = data.isMember;
+        this.user = data.user;
       });
     },
     handleClick() {
@@ -103,6 +106,24 @@ export default {
           url: '/pages/access-member/apply',
         });
       });
+    },
+
+    handleClickUser() {
+      const next = () => {
+        uni.navigateTo({
+          url: '/pages/user/index',
+        });
+      };
+
+      if (this.user.avatar || this.getUserProfile) {
+        return next();
+      } else {
+        
+        getUserProfile(() => {
+          this.getUserProfile = true;
+          next();
+        });
+      }
     },
   },
 };
