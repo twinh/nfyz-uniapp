@@ -41,6 +41,7 @@
             label="身份证"
         >
           <u-input
+              type="idcard"
               v-model="data.idCard"
               border="none"
               placeholder="请输入您的身份证"
