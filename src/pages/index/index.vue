@@ -2,15 +2,13 @@
   <view>
     <view toCenterX column bg="#F8B500" h="852" class="top">
       <image w="388" h="388" mt="165" :src="isAdmin ? '/static/monitor.png' : '/static/lock.png'"/>
-      
-      <button w="454" my="105" class="main-btn" @click="handleClick" disabled>
-        <template v-if="isAdmin">实时监控</template>
-        <template v-else-if="isMember">欢迎进入</template>
-        <template v-else>欢迎来到暖蜂驿站</template>
+      <button w="454" my="105" class="main-btn" @click="handleClick">
+        {{entry.text || '...'}}
       </button>
     </view>
     <view toAround mt="72">
-      <navigator toCenter column url="/pages/services/index" hover-class="none">
+      <navigator v-if="entry.url && entry.url !== '/pages/services/index'" toCenter column url="/pages/services/index" 
+          hover-class="none">
         <image w="144" h="144" mb2 src="/static/service.png"/>
         <view color="#999999" textCenter text="30">职工服务</view>
       </navigator>
@@ -41,8 +39,8 @@ export default {
   data() {
     return {
       isAdmin: false,
-      isMember: false,
       user: {},
+      entry: {},
       getUserProfile: false,
     };
   },
@@ -65,10 +63,10 @@ export default {
         });
       },
     });
-    
-    const scene = $.req('scene');
-    if (scene && scene.startsWith('stationId:')) {
-      uni.setStorageSync('stationId', scene.split(':')[1]);
+
+    const stationId = this.getStationId();
+    if (stationId) {
+      uni.setStorageSync('stationId', stationId);
     }
   },
   onShareAppMessage() {
@@ -78,35 +76,36 @@ export default {
     };
   },
   methods: {
+    getStationId() {
+      const scene = $.req('scene');
+      if (scene && scene.startsWith('stationId:')) {
+        return scene.split(':')[1];
+      }
+      return null;
+    },
     getData() {
       $.http({
         url: 'index',
+        data: {
+          scene: $.req('scene') || null,
+        },
       }).then(({data}) => {
         this.isAdmin = data.isAdmin;
-        this.isMember = data.isMember;
         this.user = data.user;
+        this.entry = data.entry;
+      });
+    },
+    goToEntry() {
+      uni.navigateTo({
+        url: this.entry.url,
       });
     },
     handleClick() {
-      if (this.isAdmin) {
-        uni.navigateTo({
-          url: '/pages/monitors/index'
-        });
-        return;
+      if (this.entry.requireAuth) {
+        getUserProfile(this.goToEntry);
+      } else {
+        this.goToEntry();
       }
-
-      if (this.isMember) {
-        uni.navigateTo({
-          url: '/pages/access-member/apply',
-        });
-        return;
-      }
-
-      getUserProfile(() => {
-        uni.navigateTo({
-          url: '/pages/access-member/apply',
-        });
-      });
     },
 
     handleClickUser() {
