@@ -3,10 +3,10 @@
     <view toCenterX column bg="#F8B500" h="852" class="top">
       <image w="388" h="388" mt="165" :src="isAdmin ? '/static/monitor.png' : '/static/lock.png'"/>
       
-      <button w="454" my="105" class="main-btn" @click="handleClick">
+      <button w="454" my="105" class="main-btn" @click="handleClick" disabled>
         <template v-if="isAdmin">实时监控</template>
         <template v-else-if="isMember">欢迎进入</template>
-        <template v-else>门禁申请</template>
+        <template v-else>欢迎来到暖蜂驿站</template>
       </button>
     </view>
     <view toAround mt="72">
@@ -73,7 +73,8 @@ export default {
   },
   onShareAppMessage() {
     return {
-      title: '暖蜂驿站'
+      title: '暖蜂驿站',
+      path: '/page/index/index?scene=' + $.req('scene'),
     };
   },
   methods: {
