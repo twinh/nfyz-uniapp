@@ -72,7 +72,7 @@ export default {
   onShareAppMessage() {
     return {
       title: '暖蜂驿站',
-      path: '/pages/index/index?scene=' + $.req('scene'),
+      path: '/pages/index/index?scene=' + this.user.source,
     };
   },
   methods: {
