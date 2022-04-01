@@ -1,6 +1,7 @@
 <script>
 export default {
-  onLaunch: function () {
+  onLaunch: function (options) {
+    console.log('launch', options);
     // #ifndef APP-NVUE
     uni.requireNativePlugin = () => {};
     // #endif

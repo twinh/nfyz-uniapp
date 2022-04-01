@@ -72,14 +72,14 @@ export default {
   onShareAppMessage() {
     return {
       title: '暖蜂驿站',
-      path: '/pages/index/index?scene=' + this.user.source,
+      path: '/pages/index/index?source=' + this.user.source,
     };
   },
   methods: {
     getStationId() {
-      const scene = $.req('scene');
-      if (scene && scene.startsWith('stationId:')) {
-        return scene.split(':')[1];
+      const source = $.req('source');
+      if (source && source.startsWith('stationId:')) {
+        return source.split(':')[1];
       }
       return null;
     },
@@ -87,7 +87,7 @@ export default {
       $.http({
         url: 'index',
         data: {
-          scene: $.req('scene') || '',
+          source: $.req('source') || '',
         },
       }).then(({data}) => {
         this.isAdmin = data.isAdmin;
