@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view v-if="data.user.id">
     <view bgWhite m="20" p="32" rounded="16" flex>
       <view w="144" h="144" rounded="100%" overflow="hidden">
         <image w="100%" h="100%" :src="data.user.avatar"/>
@@ -62,6 +62,9 @@ export default {
   mounted() {
     $.http({
       url: 'member',
+      data: {
+        source: $.req('source') || '',
+      },
       loading: true,
     }).then(({ret}) => {
       if (ret.isErr()) {

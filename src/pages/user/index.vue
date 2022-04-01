@@ -63,7 +63,7 @@ export default {
     
     handleClickMember() {
       uni.navigateTo({
-        url: '/pages/members/new',
+        url: '/pages/members/new?source=member',
       });
     }
   }

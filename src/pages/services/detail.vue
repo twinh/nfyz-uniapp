@@ -126,7 +126,7 @@ export default {
       if (this.data.apply.requireMember) {
         getUserProfile(() => {
           uni.navigateTo({
-            url: appendUrl('/pages/members/new', {fromService: '1'}),
+            url: appendUrl('/pages/members/new', {fromService: '1', source: 'service'}),
           });
         });
         return;
