@@ -87,7 +87,7 @@ export default {
       $.http({
         url: 'index',
         data: {
-          scene: $.req('scene') || null,
+          scene: $.req('scene') || '',
         },
       }).then(({data}) => {
         this.isAdmin = data.isAdmin;
