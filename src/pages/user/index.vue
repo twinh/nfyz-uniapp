@@ -14,12 +14,12 @@
         <view v-if="user.mobile" color="#999999">{{user.mobile.substr(0, 3) + '****' + user.mobile.substr(7)}}</view>
       </view>
     </view>
-    <view @click="handleClickAccessMember" bgWhite m="20" p="32" rounded="16" flex toCenterY>
+    <view v-if="accessMember.id" @click="handleClickAccessMember" bgWhite m="20" p="32" rounded="16" flex toCenterY>
       <view toCenter w="48">
         <image h="36" src="/static/lock2.png" mode="heightFix"></image>
       </view>
       <view ml="16">
-        {{accessMember.id ? '更新门禁资料' : '申请门禁'}}
+        更新门禁资料
       </view>
     </view>
     <navigator url="/pages/user-services/index" hover-class="none" bgWhite m="20" p="32" rounded="16" flex toCenterY>
