@@ -33,7 +33,7 @@
 		{
 			"path": "pages/access-member/apply",
 			"style": {
-				"navigationBarTitleText": "门禁申请"
+				"navigationBarTitleText": "申请门禁"
 			}
 		},
 		{
